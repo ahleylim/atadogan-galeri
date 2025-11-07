@@ -4,10 +4,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // ----------- BAŞLANGIÇ: BURAYI KESİNLİKLE DÜZENLEYİN ----------- //
 
     // 1. GitHub Kullanıcı Adınız (Tırnak içinde, Örn: "ataberkdogan")
-    const githubUsername = "ahleylim"; 
+    const githubUsername = "SENIN_KULLANICI_ADIN"; 
 
     // 2. Bu kodları yüklediğiniz Repository (Repo) Adı (Tırnak içinde, Örn: "galeri-sitem")
-    const githubRepo = "atadogan-galeri"; 
+    const githubRepo = "SENIN_REPO_ADIN"; 
 
     // 3. Resimlerin bulunduğu klasörün adı.
     const imageFolderPath = "resimler"; 
@@ -55,8 +55,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 // Tıklandığında lightbox'ı aç
                 img.addEventListener("click", () => {
-                    // Resmin URL'sini VE ADINI openLightbox fonksiyonuna gönder
-                    openLightbox(file.download_url, file.name);
+                    // <-- DEĞİŞİKLİK: openLightbox'a file.name yerine file.path gönderiyoruz
+                    // file.path şuna benzer: "resimler/foto1.jpg"
+                    openLightbox(file.download_url, file.path); 
                 });
 
                 galleryContainer.appendChild(img);
@@ -68,13 +69,17 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
     // Lightbox'ı açan fonksiyon
-    function openLightbox(imageUrl, imageName) {
+    // <-- DEĞİŞİKLİK: 'imageName' değişkeninin adı 'imagePath' olarak değişti
+    function openLightbox(imageUrl, imagePath) { 
+        // 1. Resmi göstermek için 'download_url' (hızlı olan) kullanılır
         lightboxImage.src = imageUrl; 
-        downloadBtn.href = imageUrl; 
         
-        // ÖNEMLİ: İNDİRME TUŞU İŞLEVİ
-        // Bu satır, indirme tuşuna basıldığında dosyanın orijinal adıyla
-        // (örn: "foto1.jpg") indirilmesini sağlar.
+        // 2. İndirme linki için 'imagePath' (örn: "resimler/foto1.jpg") kullanılır
+        // Bu, sitenizle aynı domainde olduğu için 'download' etiketi çalışır.
+        downloadBtn.href = imagePath; // <-- DEĞİŞİKLİK
+        
+        // 3. Dosya adını 'path' içinden al (örn: "resimler/foto1.jpg" -> "foto1.jpg")
+        const imageName = imagePath.split('/').pop(); // <-- DEĞİŞİKLİK
         downloadBtn.download = imageName; 
         
         lightbox.style.display = "flex";
