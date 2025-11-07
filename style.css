@@ -1,0 +1,138 @@
+/* Genel Sayfa Stilleri */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: #121212; /* Koyu tema arka plan */
+    color: #f5f5f5; /* Açık renk yazı */
+}
+
+/* Üst Başlık Alanı */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    border-bottom: 1px solid #333;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+/* "Ahleylim" Gradient Yazısı */
+.ahleylim-text {
+    font-size: 2rem;
+    font-weight: bold;
+    /* Göz yormayan, geçişli bir gradient oluştur */
+    background: linear-gradient(90deg, #ff6b6b, #f9a825, #f0e68c, #63d471, #3c8dbc, #ba68c8);
+    background-size: 300% 100%; /* Animasyon için gradient'i geniş tut */
+    
+    /* Gradient'i sadece metne uygula */
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    
+    /* Animasyonu tanımla: adı, süresi, zamanlaması, sonsuz döngü */
+    animation: gradient-animation 10s ease infinite;
+}
+
+/* Gradient'in hareketini sağlayan animasyon */
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Ana İçerik ve Galeri Grid Yapısı */
+main {
+    max-width: 1200px;
+    margin: 20px auto; /* Sayfada ortala */
+    padding: 20px;
+}
+
+#gallery-container {
+    display: grid;
+    /* Resimler için esnek bir grid oluştur:
+       Sığdığı kadar sütun aç, her sütun en az 250px olsun. */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px; /* Resimler arası boşluk */
+}
+
+/* Galeri Resimlerinin (Thumbnail) Stili */
+#gallery-container img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; /* Resimleri kırpıp sığdır, bozmadan doldur */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Resmin üzerine gelince (hover) büyüme ve gölge efekti */
+#gallery-container img:hover {
+    transform: scale(1.05); /* Resmi %5 büyüt */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); /* Belirgin gölge */
+}
+
+/* Lightbox (Modal) Arka Planı */
+.lightbox {
+    display: none; /* JavaScript ile açılana kadar gizli */
+    position: fixed; /* Ekranı kapla */
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9); /* Yarı saydam siyah arka plan */
+    
+    /* İçeriği (resim ve tuşları) ortalamak için flex kullan */
+    display: none; /* Bu JS tarafından 'flex' olarak değiştirilecek */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* İndir tuşunu resmin altına almak için */
+}
+
+/* Lightbox İçeriği (Büyük Resim) */
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%; /* Ekran genişliğinin %90'ını geçmesin */
+    max-height: 80vh; /* Ekran yüksekliğinin %80'ini geçmesin */
+    border-radius: 5px;
+}
+
+/* Kapatma (X) Tuşu */
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: #bbb;
+    text-decoration: none;
+}
+
+/* İndirme Tuşu */
+.download-btn {
+    display: block;
+    margin-top: 20px; /* Resimle arasına boşluk koy */
+    padding: 10px 20px;
+    background-color: #4CAF50; /* Yeşil */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.download-btn:hover {
+    background-color: #45a049;
+}
