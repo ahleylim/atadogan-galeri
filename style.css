@@ -2,15 +2,13 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
-    background-color: #121212;
-    color: #f5f5f5;
+    background-color: #121212; /* Koyu tema arka plan */
+    color: #f5f5f5; /* Açık renk yazı */
 }
 
 /* Üst Başlık Alanı */
 header {
-    display: flex; /* İçeriği hizalamak için */
-    justify-content: center; /* Başlığı ortada tutar */
-    align-items: center;
+    text-align: center; /* Başlığı ortada tutar */
     padding: 40px 20px;
     border-bottom: 1px solid #333;
     position: relative; /* "Ahleylim" yazısını konumlandırmak için 'relative' olmalı */
@@ -21,20 +19,20 @@ h1 {
     font-size: 2.5rem;
 }
 
-/* "Ahleylim" yazısının header'daki konumu */
+/* YENİ: "Ahleylim" yazısının header'daki konumu - SAĞ ÜSTE TAŞINDI */
 .brand-name {
     position: absolute;
-    top: 50%; /* Dikey olarak ortala */
+    top: 25px; /* Üstten boşluk */
     right: 25px; /* Sağdan boşluk */
-    transform: translateY(-50%); /* Tam dikey ortalama için */
+    /* transform: translateY(-50%); artık gerek yok, top ile konumlandırıldı */
 }
 
 /* "Ahleylim" Gradient Yazısı (Genel Stil) */
 .ahleylim-text {
-    font-size: 1.5rem; /* GÜNCELLENDİ: Hafif daha küçük */
+    font-size: 1.5rem; /* Hafif daha küçük */
     font-weight: bold;
     
-    /* GÜNCELLENDİ: Daha sade, mavi/turkuaz bir gradient */
+    /* Daha sade, mavi/turkuaz bir gradient */
     background: linear-gradient(90deg, #00c6ff, #0072ff);
     
     background-size: 300% 100%;
@@ -43,7 +41,7 @@ h1 {
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
     
-    /* Animasyon (Aynı kaldı, gradient ile çalışmaya devam eder) */
+    /* Animasyon */
     animation: gradient-animation 10s ease infinite;
 }
 
@@ -54,73 +52,77 @@ h1 {
     100% { background-position: 0% 50%; }
 }
 
-/* Galeri Grid Yapısı (Değişiklik yok) */
+/* Ana İçerik ve Galeri Grid Yapısı (Değişiklik yok) */
 main {
     max-width: 1200px;
-    margin: 20px auto;
+    margin: 20px auto; /* Sayfada ortala */
     padding: 20px;
 }
+
 #gallery-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 15px;
+    gap: 15px; /* Resimler arası boşluk */
 }
+
+/* Galeri Resimlerinin (Thumbnail) Stili */
 #gallery-container img {
     width: 100%;
     height: 250px;
-    object-fit: cover;
+    object-fit: cover; /* Resimleri kırpıp sığdır, bozmadan doldur */
     border-radius: 8px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* Resmin üzerine gelince (hover) büyüme ve gölge efekti */
 #gallery-container img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05); /* Resmi %5 büyüt */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); /* Belirgin gölge */
 }
 
 /* Lightbox (Modal) Arka Planı (Değişiklik yok) */
 .lightbox {
-    display: none;
-    position: fixed;
+    display: none; /* JavaScript ile açılana kadar gizli */
+    position: fixed; /* Ekranı kapla */
     z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.9);
-    display: none;
+    background-color: rgba(0, 0, 0, 0.9); /* Yarı saydam siyah arka plan */
+    
+    /* İçeriği (resim ve tuşları) ortalamak için flex kullan */
+    display: none; /* Bu JS tarafından 'flex' olarak değiştirilecek */
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column; /* İndir tuşunu resmin altına almak için */
 }
 
 /* Lightbox İçeriği (Büyük Resim) (Değişiklik yok) */
 .lightbox-content {
     margin: auto;
     display: block;
-    max-width: 90%;
-    max-height: 80vh;
+    max-width: 90%; /* Ekran genişliğinin %90'ını geçmesin */
+    max-height: 80vh; /* Ekran yüksekliğinin %80'ini geçmesin */
     border-radius: 5px;
 }
 
-/* YENİ: Lightbox içindeki "Ahleylim" yazısının konumu */
+/* YENİ: Lightbox içindeki "Ahleylim" yazısının konumu - SAĞ ÜSTE TAŞINDI */
 .lightbox .ahleylim-text {
     position: absolute;
-    top: 25px;
-    right: 35px;
+    top: 25px; /* Üstten boşluk */
+    right: 35px; /* Sağdan boşluk */
     z-index: 1001; /* Diğer elemanların üstünde olsun */
     /* Boyut ve renk stilini zaten .ahleylim-text sınıfından alıyor */
 }
 
-/* Kapatma (X) Tuşu */
+/* Kapatma (X) Tuşu - SOL ÜSTE TAŞINDI */
 .lightbox-close {
     position: absolute;
     top: 20px;
-    
-    /* GÜNCELLENDİ: "Ahleylim" yazısına yer açmak için SOL ÜSTE TAŞINDI */
-    left: 35px; 
-    
+    left: 35px; /* SOL ÜSTE TAŞINDI */
     color: #f1f1f1;
     font-size: 40px;
     font-weight: bold;
@@ -136,9 +138,9 @@ main {
 /* İndirme Tuşu (Değişiklik yok) */
 .download-btn {
     display: block;
-    margin-top: 20px;
+    margin-top: 20px; /* Resimle arasına boşluk koy */
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #4CAF50; /* Yeşil */
     color: white;
     text-decoration: none;
     border-radius: 5px;
