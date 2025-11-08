@@ -1,12 +1,12 @@
 // Sayfa tamamen yüklendiğinde bu fonksiyonu çalıştır
 document.addEventListener("DOMContentLoaded", function() {
 
-    // ----------- BAŞLANGIÇ: BURAYI KESİNLİKLE DÜZENLEYİN ----------- //
+    // ----------- BAŞLANGIÇ: BİLGİLERİNİZ GİRİLDİ ----------- //
 
-    // 1. GitHub Kullanıcı Adınız (Tırnak içinde, Örn: "ahleylim")
+    // 1. GitHub Kullanıcı Adınız
     const githubUsername = "ahleylim"; 
 
-    // 2. Bu kodları yüklediğiniz Repository (Repo) Adı (Tırnak içinde, Örn: "galeri-sitem")
+    // 2. Repository (Repo) Adınız
     const githubRepo = "atadogan-galeri"; 
 
     // 3. Resimlerin bulunduğu klasörün adı.
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch(apiUrl)
         .then(response => {
             if (response.status === 404) throw new Error(`'${imageFolderPath}' klasörü bulunamadı. Lütfen reponuzda bu klasörü oluşturduğunuzdan emin olun.`);
-            if (!response.ok) throw new Error("GitHub API'den veriler alınamadı. Kullanıcı adı ve repo adını kontrol edin.");
+            if (!response.ok) throw new Error("GitHub API'den veriler alınamadı. Kullanıcı adı ve repo adını (büyük/küçük harf dahil) kontrol edin. Repo 'Public' olmalı.");
             return response.json();
         })
         .then(data => {
@@ -171,8 +171,3 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 });
-
-
-
-
-
