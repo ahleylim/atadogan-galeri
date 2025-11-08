@@ -3,11 +3,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // ----------- BAŞLANGIÇ: BURAYI KESİNLİKLE DÜZENLEYİN ----------- //
 
-    // 1. GitHub Kullanıcı Adınız (Tırnak içinde, Örn: "ataberkdogan")
-    const githubUsername = "SENIN_KULLANICI_ADIN"; 
+    // 1. GitHub Kullanıcı Adınız (Tırnak içinde, Örn: "ahleylim")
+    const githubUsername = "ahleylim"; 
 
     // 2. Bu kodları yüklediğiniz Repository (Repo) Adı (Tırnak içinde, Örn: "galeri-sitem")
-    const githubRepo = "SENIN_REPO_ADIN"; 
+    const githubRepo = "atadogan-galeri"; 
 
     // 3. Resimlerin bulunduğu klasörün adı.
     const imageFolderPath = "resimler"; 
@@ -171,3 +171,4 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 });
+
