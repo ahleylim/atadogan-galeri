@@ -72,7 +72,7 @@ main {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden; 
+    overflow: hidden; /* Sürükleme yaparken taşmayı önler */
     background-color: rgba(0, 0, 0, 0.9);
     justify-content: center;
     align-items: center;
@@ -83,11 +83,11 @@ main {
 .lightbox-content {
     margin: auto;
     display: block;
-    max-width: 95%; /* GÜNCELLENDİ */
-    max-height: 90vh; /* GÜNCELLENDİ */
+    max-width: 95%; /* Varsayılan olarak büyük açılması için */
+    max-height: 90vh; /* Varsayılan olarak büyük açılması için */
     border-radius: 5px;
     position: relative; 
-    transition: transform 0.2s ease; 
+    transition: transform 0.2s ease; /* Yumuşak zoom için */
     cursor: default; 
 }
 
